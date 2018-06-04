@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <h1> Welcome! </h1>
+
+        <ul>
+          {% for item in itemList %}
+            <li style="margin-bottom:10px">
+              Name: {{item.name}} x{{item.quantity}} <br>
+              {{item.description}}
+
+              <form method="POST" action="/shop">
+
+                <input type="hidden" name="item-id" value="{{ item.id }}">
+                <input type="hidden" name="total" value="{{ item.quantity }}">
+                <input type="hidden" name="quantity" value="1">
+
+                {% if item.quantity > 0 %}
+                  <input type="submit" value="Buy" >
+                {% endif %}
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+        
+    </body>
+</html>
